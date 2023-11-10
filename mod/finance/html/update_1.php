@@ -14,7 +14,7 @@
 	$db_name -> Database's Name.
 	$menu_sql -> SQL.
 	$sql_result -> exec SQL Result.
-	$menu_info -> Selected menu information.
+	$pay_desc -> Selected menu information.
 -->
 
 	<body>
@@ -26,32 +26,20 @@
 			<form action="./update_2.php" method="POST">
 				<table>
 					<tr>
-						<th>NO</th>
-						<th>BREWERY</th>
-						<th>BEERNAME</th>
-						<th>Locality</th>
-						<th>Style</th>
-						<th>ABV</th>
+						<th>支払先</th>
+						<th>費目</th>
 					</tr>
 
 					<?php
-						$menu_sql = 'SELECT * FROM beer_menu;';
-						if ($sql_result = $db_connect->query($menu_sql)) {
-							while ($menu_info = $sql_result->fetch_assoc()){
+						$get_master_sql = 'SELECT * FROM pay_dest_list;';
+						if ($sql_result = $db_connect->query($get_master_sql)) {
+							while ($pay_desc = $sql_result->fetch_assoc()){
 								print "<tr>\n";
-								print "<td>{$menu_info['no']}</td>\n";
-								print "<td><input type=\"text\" name=\"no{$menu_info['no']}_brewery1\" value=\"{$menu_info['brewery1']}\" class=\"fValue\"><br>\n";
-								print "<input type=\"text\" name=\"no{$menu_info['no']}_brewery2\" value=\"{$menu_info['brewery2']}\" class=\"fValue\"></td>\n";
-								print "<td><input type=\"text\" name=\"no{$menu_info['no']}_beername1\" value=\"{$menu_info['beername1']}\" class=\"fValue\"><br>\n";
-								print "<input type=\"text\" name=\"no{$menu_info['no']}_beername2\" value=\"{$menu_info['beername2']}\" class=\"fValue\"></td>\n";
-								print "<td><input type=\"text\" name=\"no{$menu_info['no']}_locality\" value=\"{$menu_info['locality']}\" class=\"fValue\"></td>\n";
-								print "<td><input type=\"text\" name=\"no{$menu_info['no']}_style1\" value=\"{$menu_info['style1']}\" class=\"fValue\"><br>\n";
-								print "<input type=\"text\" name=\"no{$menu_info['no']}_style2\" value=\"{$menu_info['style2']}\" class=\"fValue\"></td>\n";
-								print "<td><input type=\"text\" name=\"no{$menu_info['no']}_abv\" value=\"{$menu_info['abv']}\" class=\"fValue\"></td>\n";
+								print "<td>{$pay_desc['pay_dest']}</td>\n";
+								print "<td><input type=\"text\" value=\"{$pay_desc['pay_type']}\"><br>\n";
 								print "</tr>\n\n";
 							};
 						};
-						$sql_result->close();
 						$db_connect->close();
 					?>
 				</table>
