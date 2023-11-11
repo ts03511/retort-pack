@@ -12,9 +12,10 @@
 	$db_user -> Database User.
 	$db_password -> Database User's Password.
 	$db_name -> Database's Name.
-	$menu_sql -> SQL.
+	$get_master_sql -> SQL.
 	$sql_result -> exec SQL Result.
-	$pay_desc -> Selected menu information.
+	$pay_desc -> Selected payment information.
+    $record_id -> uniq ID in pay_dest_list. it userd by update_2.php for parse post data.
 -->
 
 	<body>
@@ -32,22 +33,24 @@
 
 					<?php
 						$get_master_sql = 'SELECT * FROM pay_dest_list;';
+                        $record_id = 1;
 						if ($sql_result = $db_connect->query($get_master_sql)) {
 							while ($pay_desc = $sql_result->fetch_assoc()){
 								print "<tr>\n";
 								print "<td>{$pay_desc['pay_dest']}</td>\n";
-								print "<td><input type=\"text\" value=\"{$pay_desc['pay_type']}\"><br>\n";
+								print "<td><input type=\"text\" name=\"pay_type_{$record_id}\" value=\"{$pay_desc['pay_type']}\"></td>\n";
 								print "</tr>\n\n";
+                                $record_id = $record_id + 1;
 							};
 						};
 						$db_connect->close();
 					?>
 				</table>
-				<input type="submit" value="この内容で更新する">
+				<input type="submit" value="プレビュー">
 			</form>
 
 			<br><br>
-			<input type="button" value="ビールメニューへ" onClick="location.href='./menu.php'">
+			<input type="button" value="戻る" onClick="location.href='/">
 		</div>
 	</body>
 </html>
