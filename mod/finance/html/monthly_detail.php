@@ -24,7 +24,7 @@
 			?>
 
 		<div id="master">
-	        <form action="./payment_history.php" method="POST">
+	        <form action="./monthly_detail.php" method="POST">
                 <select name="date">
                     <option value="2022-07">2022年7月</option>
                     <option value="2022-08">2022年8月</option>
@@ -48,6 +48,30 @@
             
                 <input type="submit" value="表示">
             </form>
+
+            <?php
+                $get_sum_sql =
+                    'SELECT SUM (
+                        pay_value
+                     ) AS pay_sum
+                     FROM
+                        payment_history
+                     WHERE
+                        pay_date
+                     LIKE ' . "\"" .
+                        $_POST["date"].'%' .
+                     "\""
+                ;
+                
+                $sql_result = $db_connect->query($get_sum_sql);
+                var_dump($sql_result);
+                //$pay_summary = $sql_result->fetch_column(0);
+                print 
+                    "<h2><font color=#FFFFFF>" . 
+                        $_POST["date"] . ": " . $sql_result .
+                    "</font></h2>"
+                ;
+            ?>
 
 			<table>
 					<tr>

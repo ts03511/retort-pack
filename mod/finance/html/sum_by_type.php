@@ -24,7 +24,7 @@
 			?>
 
 		<div id="master">
-	        <form action="./payment_history.php" method="POST">
+	        <form action="./sum_by_type.php" method="POST">
                 <select name="date">
                     <option value="2022-07">2022年7月</option>
                     <option value="2022-08">2022年8月</option>
@@ -50,8 +50,29 @@
             </form>
 
             <?php
-                print "<h2>" . $_POST["date"] . "</h2>"
+                $get_sum_sql =
+                    'SELECT SUM (
+                        pay_value
+                     ) AS pay_sum
+                     FROM
+                        payment_history
+                     WHERE
+                        pay_date
+                     LIKE ' . "\"" .
+                        $_POST["date"].'%' .
+                     "\""
+                ;
+                
+                $sql_result = $db_connect->query($get_sum_sql);
+                var_dump($sql_result);
+                //$pay_summary = $sql_result->fetch_column(0);
+                print 
+                    "<h2><font color=#FFFFFF>" . 
+                        $_POST["date"] . ": " . $sql_result .
+                    "</font></h2>"
+                ;
             ?>
+
 			<table>
 					<tr>
 						<th>費目</th>
@@ -61,8 +82,8 @@
 					<?php
 						$get_history_sql = 
                             'SELECT 
-                                pay_dest_list.pay_type,
-                                sum(payment_history.pay_value)
+                                pay_dest_list.pay_type AS pay_type,
+                                payment_history.pay_value AS pay_value
                              FROM
                                 payment_history
                              INNER JOIN
@@ -71,23 +92,23 @@
                                 payment_history.pay_dest = pay_dest_list.pay_dest
                              WHERE 
                                 payment_history.pay_date
-                             LIKE' . "\"" .
+                             LIKE ' . "\"" .
                                 $_POST["date"].'%' .
+                             "\" " .
                              'GROUP BY
                                 pay_type'
-                             . "\""
                              ;
 
 						if ($sql_result = $db_connect->query($get_history_sql)) {
+                var_dump($sql_result);
 							while ($pay_desc = $sql_result->fetch_assoc()){
 								print "<tr>\n";
-								print "<td>{$pay_desc['pay_date']}</td>\n";
-								print "<td>{$pay_desc['pay_dest']}</td>\n";
-								print "<td>{$pay_desc['pay_type']}</td>\n";
-								print "<td>{$pay_desc['pay_value']}</td>\n";
+								print "<td>" . $pay_desc['pay_type'] . "</td>\n";
+								print "<td>" . $pay_desc['pay_value'] . "</td>\n";
 								print "</tr>\n\n";
 							};
-						};
+                        };
+
 						$db_connect->close();
 					?>
 				</table>
