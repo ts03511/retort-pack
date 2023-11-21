@@ -51,7 +51,7 @@
 
             <?php
                 $get_sum_sql =
-                    'SELECT SUM (
+                    'SELECT SUM(
                         pay_value
                      ) AS pay_sum
                      FROM
@@ -63,14 +63,15 @@
                      "\""
                 ;
                 
-                $sql_result = $db_connect->query($get_sum_sql);
-                var_dump($sql_result);
-                //$pay_summary = $sql_result->fetch_column(0);
-                print 
-                    "<h2><font color=#FFFFFF>" . 
-                        $_POST["date"] . ": " . $sql_result .
-                    "</font></h2>"
-                ;
+               $sql_result = $db_connect->query($get_sum_sql);
+               $pay_summary = $sql_result->fetch_assoc();
+               if ($_POST["date"]) {
+                    print 
+                        "<h2><font color=#FFFFFF>" . 
+                            $_POST["date"] . ": " . $pay_summary['pay_sum'] . " 円" .
+                        "</font></h2>"
+                    ;
+               }
             ?>
 
 			<table>
@@ -81,9 +82,9 @@
 
 					<?php
 						$get_history_sql = 
-                            'SELECT 
+                            'SELECT  
                                 pay_dest_list.pay_type AS pay_type,
-                                payment_history.pay_value AS pay_value
+                                sum(payment_history.pay_value) AS pay_sum
                              FROM
                                 payment_history
                              INNER JOIN
@@ -100,11 +101,10 @@
                              ;
 
 						if ($sql_result = $db_connect->query($get_history_sql)) {
-                var_dump($sql_result);
 							while ($pay_desc = $sql_result->fetch_assoc()){
 								print "<tr>\n";
 								print "<td>" . $pay_desc['pay_type'] . "</td>\n";
-								print "<td>" . $pay_desc['pay_value'] . "</td>\n";
+								print "<td>" . $pay_desc['pay_sum'] . "</td>\n";
 								print "</tr>\n\n";
 							};
                         };
