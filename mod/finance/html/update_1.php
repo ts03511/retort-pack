@@ -32,7 +32,19 @@
 					</tr>
 
 					<?php
-						$get_master_sql = 'SELECT * FROM pay_dest_list;';
+						$get_master_sql = 
+                            'SELECT 
+                                pay_dest_list.pay_dest,
+                                pay_dest_tran.pay_type
+                             FROM 
+                                pay_dest_list
+                             LEFT OUTER JOIN 
+                                pay_dest_tran
+                             ON
+	                            pay_dest_list.pay_dest = pay_dest_tran.pay_dest
+                            '
+                        ;
+
                         $record_id = 1;
 						if ($sql_result = $db_connect->query($get_master_sql)) {
 							while ($pay_desc = $sql_result->fetch_assoc()){
