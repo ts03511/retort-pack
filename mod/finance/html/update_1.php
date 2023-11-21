@@ -32,7 +32,8 @@
 					</tr>
 
 					<?php
-						$get_master_sql = 
+						$get_master_sql = 'SELECT * FRO< pay_dest_list'
+                            /*
                             'SELECT 
                                 pay_dest_list.pay_dest,
                                 pay_dest_tran.pay_type
@@ -45,6 +46,7 @@
                              ORDER BY
 	                            pay_dest asc
                             '
+                            */
                         ;
 
                         $record_id = 1;
