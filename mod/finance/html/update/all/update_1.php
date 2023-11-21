@@ -2,7 +2,7 @@
 <head>
 	<title>retort-pack</title>
 	<meta charset="UTF-8">
-	<link rel="stylesheet" type="text/css" href="../css/update_1.css">
+	<link rel="stylesheet" type="text/css" href="../../../css/update_1.css">
 	
 </head>
 
@@ -42,6 +42,8 @@
                                 pay_dest_tran
                              ON
 	                            pay_dest_list.pay_dest = pay_dest_tran.pay_dest
+                             ORDER BY
+	                            pay_dest asc
                             '
                         ;
 

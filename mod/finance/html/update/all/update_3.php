@@ -2,7 +2,7 @@
 <head>
 	<title>retort-pack</title>
 	<meta charset="UTF-8">
-	<link rel="stylesheet" type="text/css" href="../css/update_3.css">
+	<link rel="stylesheet" type="text/css" href="../../../css/update_3.css">
 	
 </head>
 
