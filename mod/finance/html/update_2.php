@@ -2,7 +2,7 @@
 <head>
 	<title>retort-pack</title>
 	<meta charset="UTF-8">
-	<link rel="stylesheet" type="text/css" href="../../../css/update_1.css">
+	<link rel="stylesheet" type="text/css" href="../css/update_1.css">
 	
 </head>
 
@@ -20,7 +20,7 @@
 
 	<body>
 			<?php
-				require './../../common/connect_to_db.php';
+				require './common/connect_to_db.php';
 
                 $trancate_sql = 'TRUNCATE TABLE pay_dest_tran';
                 $get_master_sql = 'SELECT * FROM pay_dest_list;';
