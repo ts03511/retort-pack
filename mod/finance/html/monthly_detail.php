@@ -51,7 +51,7 @@
 
             <?php
                 $get_sum_sql =
-                    'SELECT SUM (
+                    'SELECT SUM(
                         pay_value
                      ) AS pay_sum
                      FROM
@@ -63,14 +63,13 @@
                      "\""
                 ;
                 
-                $sql_result = $db_connect->query($get_sum_sql);
-                var_dump($sql_result);
-                //$pay_summary = $sql_result->fetch_column(0);
-                print 
+               $sql_result = $db_connect->query($get_sum_sql);
+               $pay_summary = $sql_result->fetch_assoc();
+               print 
                     "<h2><font color=#FFFFFF>" . 
-                        $_POST["date"] . ": " . $sql_result .
+                        $_POST["date"] . ": " . $pay_summary['pay_sum'] .
                     "</font></h2>"
-                ;
+               ;
             ?>
 
 			<table>
