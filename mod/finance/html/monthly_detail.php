@@ -65,11 +65,13 @@
                 
                $sql_result = $db_connect->query($get_sum_sql);
                $pay_summary = $sql_result->fetch_assoc();
-               print 
-                    "<h2><font color=#FFFFFF>" . 
-                        $_POST["date"] . ": " . $pay_summary['pay_sum'] .
-                    "</font></h2>"
-               ;
+               if ($_POST["date"]) {
+                    print 
+                        "<h2><font color=#FFFFFF>" . 
+                            $_POST["date"] . ": " . $pay_summary['pay_sum'] . " 円" .
+                        "</font></h2>"
+                    ;
+               }
             ?>
 
 			<table>
