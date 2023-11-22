@@ -1,5 +1,7 @@
 #!/bin/bash
 ## middleware install
+sudo dnf -y update
+sudo dnf -y install mariadb-server
 sudo dnf -y install httpd php php-mysqlnd
 
 ## directory initializing and deploy

@@ -1,13 +1,13 @@
--- MySQL dump 10.19  Distrib 10.3.28-MariaDB, for Linux (x86_64)
+-- MariaDB dump 10.19  Distrib 10.5.16-MariaDB, for Linux (x86_64)
 --
 -- Host: localhost    Database: retort
 -- ------------------------------------------------------
--- Server version	10.3.28-MariaDB
+-- Server version	10.5.16-MariaDB
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
+/*!40101 SET NAMES utf8 */;
 /*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
 /*!40103 SET TIME_ZONE='+00:00' */;
 /*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
@@ -58,19 +58,43 @@ CREATE TABLE `beer_menu_tran` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Table structure for table `finance`
+-- Table structure for table `pay_dest_list`
 --
 
-DROP TABLE IF EXISTS `finance`;
+DROP TABLE IF EXISTS `pay_dest_list`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `finance` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `registered_date` date NOT NULL,
-  `type` tinyint(1) NOT NULL DEFAULT 0,
-  `value` int(6) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=latin1;
+CREATE TABLE `pay_dest_list` (
+  `pay_dest` varchar(200) NOT NULL,
+  `pay_type` varchar(10) NOT NULL DEFAULT 'NO_LABEL'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `pay_dest_tran`
+--
+
+DROP TABLE IF EXISTS `pay_dest_tran`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `pay_dest_tran` (
+  `pay_dest` varchar(200) NOT NULL,
+  `pay_type` varchar(10) NOT NULL DEFAULT 'NO_LABEL'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `payment_history`
+--
+
+DROP TABLE IF EXISTS `payment_history`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `payment_history` (
+  `pay_date` date NOT NULL,
+  `pay_dest` varchar(200) NOT NULL,
+  `pay_value` int(6) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -82,4 +106,4 @@ CREATE TABLE `finance` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-02-23 13:54:43
+-- Dump completed on 2023-11-22 13:16:25
