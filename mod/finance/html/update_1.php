@@ -32,7 +32,7 @@
 					</tr>
 
 					<?php
-						$get_master_sql = 'SELECT * FROM pay_dest_list'
+						$get_master_sql = 'SELECT * FROM pay_dest_list';
                             /*
                             'SELECT 
                                 pay_dest_list.pay_dest,
