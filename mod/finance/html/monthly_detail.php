@@ -70,47 +70,47 @@
                             $_POST["date"] . ": " . $pay_summary['pay_sum'] . " 円" .
                         "</font></h2>"
                     ;
-                }
 
-                print "<table>";
-                print "<tr>";
-                print "<th>日付</th>";
-                print "<th>支払先</th>";
-                print "<th>費目</th>";
-                print "<th>金額</th>";
-                print "</tr>";
+                    print "<table>";
+                    print "<tr>";
+                    print "<th>日付</th>";
+                    print "<th>支払先</th>";
+                    print "<th>費目</th>";
+                    print "<th>金額</th>";
+                    print "</tr>";
 
-                $get_history_sql = 
-                    'SELECT 
-                        payment_history.pay_date, 
-                        payment_history.pay_dest, 
-                        pay_dest_list.pay_type,
-                        payment_history.pay_value
-                    FROM
-                        payment_history
-                    INNER JOIN
-                        pay_dest_list
-                    ON
-                        payment_history.pay_dest = pay_dest_list.pay_dest
-                    WHERE 
-                        payment_history.pay_date
-                    LIKE' . "\"" .
-                        $_POST["date"].'%'
-                    . "\""
-                ;
+                    $get_history_sql = 
+                        'SELECT 
+                            payment_history.pay_date, 
+                            payment_history.pay_dest, 
+                            pay_dest_list.pay_type,
+                            payment_history.pay_value
+                        FROM
+                            payment_history
+                        INNER JOIN
+                            pay_dest_list
+                        ON
+                            payment_history.pay_dest = pay_dest_list.pay_dest
+                        WHERE 
+                            payment_history.pay_date
+                        LIKE' . "\"" .
+                            $_POST["date"].'%'
+                        . "\""
+                    ;
 
-                if ($sql_result = $db_connect->query($get_history_sql)) {
-                    while ($pay_desc = $sql_result->fetch_assoc()){
-                        print "<tr>\n";
-                        print "<td>{$pay_desc['pay_date']}</td>\n";
-                        print "<td>{$pay_desc['pay_dest']}</td>\n";
-                        print "<td>{$pay_desc['pay_type']}</td>\n";
-                        print "<td>{$pay_desc['pay_value']}</td>\n";
-                        print "</tr>\n\n";
+                    if ($sql_result = $db_connect->query($get_history_sql)) {
+                        while ($pay_desc = $sql_result->fetch_assoc()){
+                            print "<tr>\n";
+                            print "<td>{$pay_desc['pay_date']}</td>\n";
+                            print "<td>{$pay_desc['pay_dest']}</td>\n";
+                            print "<td>{$pay_desc['pay_type']}</td>\n";
+                            print "<td>{$pay_desc['pay_value']}</td>\n";
+                            print "</tr>\n\n";
+                        };
+		                print "</table>";
                     };
-		            print "</table>";
+                    $db_connect->close();
                 };
-                $db_connect->close();
             ?>
 
 			<br><br>
