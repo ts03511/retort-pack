@@ -2,7 +2,7 @@
 <head>
 	<title>retort-pack</title>
 	<meta charset="UTF-8">
-	<link rel="stylesheet" type="text/css" href="../../../css/update_1.css">
+	<link rel="stylesheet" type="text/css" href="./../../../css/base.css">
 	
 </head>
 
@@ -20,11 +20,11 @@
 
 	<body>
 			<?php
-				require './common/connect_to_db.php';
+				require './../common/connect_to_db.php';
 			?>
 
 		<div id="master">
-			<form action="./update_2.php" method="POST">
+			<form action="./update_all_2.php" method="POST">
 				<table>
 					<tr>
 						<th>支払先</th>
@@ -32,7 +32,8 @@
 					</tr>
 
 					<?php
-						$get_master_sql = 
+						$get_master_sql = 'SELECT * FROM pay_dest_list';
+                            /*
                             'SELECT 
                                 pay_dest_list.pay_dest,
                                 pay_dest_tran.pay_type
@@ -45,6 +46,7 @@
                              ORDER BY
 	                            pay_dest asc
                             '
+                            */
                         ;
 
                         $record_id = 1;
@@ -64,7 +66,7 @@
 			</form>
 
 			<br><br>
-			<input type="button" value="戻る" onClick="location.href='/">
+			<input type="button" value="戻る" onClick="location.href='./../../../index.html'">
 		</div>
 	</body>
 </html>

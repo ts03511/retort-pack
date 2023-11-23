@@ -2,7 +2,7 @@
 <head>
 	<title>retort-pack</title>
 	<meta charset="UTF-8">
-	<link rel="stylesheet" type="text/css" href="../../../css/update_3.css">
+	<link rel="stylesheet" type="text/css" href="./../../../css/base.css">
 	
 </head>
 
@@ -19,7 +19,7 @@
 
 	<body>
 		<?php
-			require './common/connect_to_db.php';
+			require './../common/connect_to_db.php';
 			$drop_sql = "DROP TABLE pay_dest_list;";
 			$refresh_sql = "CREATE TABLE pay_dest_list AS SELECT * FROM pay_dest_tran;";
 			$db_connect->query($drop_sql);
@@ -30,7 +30,7 @@
 		<div id="master">
 			<div id="complete-msg">
 				<h4>更新が完了しました。</h4>
-				<input type="button" value="トップへ戻る" onClick="location.href='/'">
+				<input type="button" value="戻る" onClick="location.href='./../../../index.html'">
 			</div>
 		</div>
 	</body>
