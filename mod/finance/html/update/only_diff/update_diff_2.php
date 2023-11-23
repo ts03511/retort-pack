@@ -30,7 +30,7 @@
 
 					<?php
 				        require './../common/connect_to_db.php';
-                        for ($record_id=1; $record_id=3; $record_id++) {
+                        for ($record_id=1; $record_id<=3; $record_id++) {
                             print "<tr>\n";
                             print "<td>" . $_POST["pay_dest_$record_id"] . "</td>\n";
                             print "<td>" . $_POST["pay_type_$record_id"] . "</td>\n";
