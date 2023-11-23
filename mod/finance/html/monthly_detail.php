@@ -67,7 +67,7 @@
                 $sql_result = $db_connect->query($get_sum_sql);
                 $pay_summary = $sql_result->fetch_assoc();
                 if ($_POST["date"]) {
-                    print $_POST["date"] . ": " . $pay_summary['pay_sum'] . " 円";
+                    print "<div id=\"monthly_summary_aria\">" . $_POST["date"] . ": " . $pay_summary['pay_sum'] . " 円" . "</div>";
 
                     print "<table>";
                     print "<tr>";
