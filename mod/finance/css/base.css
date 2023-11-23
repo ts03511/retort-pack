@@ -47,6 +47,24 @@ table td {
     border: solid 1px #000000;
 }
 
-input {
-    position: relative;
+#period_select_aria {
+    position: absolute;
+    top: 5%;
+    left: 0%;
+    width: 50%;
+    height: 10%;
+    align: right;
+}
+
+#back_btn_head {
+    position: absolute;
+    top: 5%;
+    left: 50%;
+    width: 50%;
+    height: 10%;
+    aligtn: left;
+}
+
+#back_btn_foot{
+    position: absolute;
 }

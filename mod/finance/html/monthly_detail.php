@@ -23,7 +23,7 @@
         ?>
 
         <div id="master">
-            <form action="./monthly_detail.php" method="POST">
+            <form id="period_select_aria" action="./monthly_detail.php" method="POST">
                 <select name="date">
                     <option value="2022-07">2022年7月</option>
                     <option value="2022-08">2022年8月</option>
@@ -47,6 +47,8 @@
             
                 <input type="submit" value="表示">
             </form>
+            
+            <input id="back_btn_head" type="button" value="戻る" onClick="location.href='../index.html'">
 
             <?php
                 $get_sum_sql =
@@ -110,7 +112,7 @@
             ?>
 
 			<br><br>
-			<input type="button" value="戻る" onClick="location.href='../index.html'">
+			<input id="back_btn_foot" type="button" value="戻る" onClick="location.href='../index.html'">
 		</div>
 	</body>
 </html>
