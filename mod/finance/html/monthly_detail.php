@@ -2,7 +2,7 @@
 <head>
     <title>retort-pack</title>
     <meta charset="UTF-8">
-    <link rel="stylesheet" type="text/css" href="../css/monthly_detail">
+    <link rel="stylesheet" type="text/css" href="../css/monthly_detail.css">
 </head>
 
 <!-- List of valiables.
@@ -38,7 +38,7 @@
                                 period'
                         ;
 
-                        if ($sql_result = $db_connect->query($get_history_sql)) {
+                        if ($sql_result = $db_connect->query($get_period_sql)) {
                             while ($period_list = $sql_result->fetch_assoc()){
                                 print "<option value=\"" . $period_list['period'] . ">" . $period_list['period'] . "</option>";
                             };
