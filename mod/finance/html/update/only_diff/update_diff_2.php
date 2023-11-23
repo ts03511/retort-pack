@@ -36,6 +36,7 @@
                             print "<td>" . $_POST["pay_type_$record_id"] . "</td>\n";
                             print "</tr>\n\n";
 						};
+                        print var_dump($_POST);
 						$db_connect->close();
 					?>
 				</table>
@@ -45,7 +46,7 @@
 			</form>
 
 			<br><br>
-			<input type="button" value="戻る" onClick="location.href='./update_all_1.php'">
+			<input type="button" value="戻る" onClick="location.href='./update_diff_1.php'">
 		</div>
 	</body>
 </html>
