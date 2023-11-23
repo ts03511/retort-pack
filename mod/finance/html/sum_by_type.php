@@ -1,9 +1,8 @@
 <!DOCTYPE html>
 <head>
-	<title>retort-pack</title>
-	<meta charset="UTF-8">
-	<link rel="stylesheet" type="text/css" href="../css/base.css">
-	
+    <title>retort-pack</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="../css/base.css">
 </head>
 
 <!-- List of valiables.
@@ -19,35 +18,37 @@
 -->
 
 	<body>
-			<?php
-				require './common/connect_to_db.php';
-			?>
+        <?php
+            require './common/connect_to_db.php';
+        ?>
 
-		<div id="master">
-	        <form action="./sum_by_type.php" method="POST">
+        <div id="master">
+            <form id="period_select_aria" action="./sum_by_type.php" method="POST">
                 <select name="date">
-                    <option value="2022-07">2022年7月</option>
-                    <option value="2022-08">2022年8月</option>
-                    <option value="2022-09">2022年9月</option>
-                    <option value="2022-10">2022年10月</option>
-                    <option value="2022-11">2022年11月</option>
-                    <option value="2022-12">2022年12月</option>
-                    <option value="2023-01">2023年1月</option>
-                    <option value="2023-02">2023年2月</option>
-                    <option value="2023-03">2023年3月</option>
-                    <option value="2023-04">2023年4月</option>
-                    <option value="2023-05">2023年5月</option>
-                    <option value="2023-06">2023年6月</option>
-                    <option value="2023-07">2023年7月</option>
-                    <option value="2023-08">2023年8月</option>
-                    <option value="2023-09">2023年9月</option>
-                    <option value="2023-10">2023年10月</option>
-                    <option value="2023-11">2023年11月</option>
-                    <option value="2023-12">2023年12月</option>
+                    <?php
+                    
+                        $get_period_sql =
+                            'SELECT 
+                                DISTINCT(
+                                    SUBSTRING_INDEX(pay_date,"-",2)
+                                ) AS period 
+                            FROM 
+                                payment_history
+                            ORDER BY
+                                period'
+                        ;
+
+                        if ($sql_result = $db_connect->query($get_period_sql)) {
+                            while ($period_list = $sql_result->fetch_assoc()){
+                                print "<option value=\"" . $period_list['period'] . "\">" . $period_list['period'] . "</option>";
+                            };
+                        };
+                    ?>
                 </select>
-            
                 <input type="submit" value="表示">
             </form>
+            
+            <input id="back_btn_head" type="button" value="戻る" onClick="location.href='../index.html'">
 
             <?php
                 $get_sum_sql =
@@ -63,57 +64,51 @@
                      "\""
                 ;
                 
-               $sql_result = $db_connect->query($get_sum_sql);
-               $pay_summary = $sql_result->fetch_assoc();
-               if ($_POST["date"]) {
-                    print 
-                        "<h2><font color=#FFFFFF>" . 
-                            $_POST["date"] . ": " . $pay_summary['pay_sum'] . " 円" .
-                        "</font></h2>"
+                $sql_result = $db_connect->query($get_sum_sql);
+                $pay_summary = $sql_result->fetch_assoc();
+                if ($_POST["date"]) {
+                    print "<div id=\"monthly_summary_aria\">" . $_POST["date"] . ": " . $pay_summary['pay_sum'] . " 円" . "</div>";               
+
+                    print "<table>";
+                    print "<tr>";
+                    print "<th>費目</th>";
+                    print "<th>金額</th>";
+                    print "</tr>";
+
+
+                    $get_history_sql = 
+                        'SELECT  
+                            pay_dest_list.pay_type AS pay_type,
+                            sum(payment_history.pay_value) AS pay_sum
+                        FROM
+                            payment_history
+                        INNER JOIN
+                            pay_dest_list
+                        ON
+                            payment_history.pay_dest = pay_dest_list.pay_dest
+                        WHERE 
+                            payment_history.pay_date
+                        LIKE ' . "\"" .
+                            $_POST["date"].'%' .
+                            "\" " .
+                        'GROUP BY
+                            pay_type'
                     ;
-               }
-            ?>
 
-			<table>
-					<tr>
-						<th>費目</th>
-						<th>金額</th>
-					</tr>
-
-					<?php
-						$get_history_sql = 
-                            'SELECT  
-                                pay_dest_list.pay_type AS pay_type,
-                                sum(payment_history.pay_value) AS pay_sum
-                             FROM
-                                payment_history
-                             INNER JOIN
-                                pay_dest_list
-                             ON
-                                payment_history.pay_dest = pay_dest_list.pay_dest
-                             WHERE 
-                                payment_history.pay_date
-                             LIKE ' . "\"" .
-                                $_POST["date"].'%' .
-                             "\" " .
-                             'GROUP BY
-                                pay_type'
-                             ;
-
-						if ($sql_result = $db_connect->query($get_history_sql)) {
-							while ($pay_desc = $sql_result->fetch_assoc()){
-								print "<tr>\n";
-								print "<td>" . $pay_desc['pay_type'] . "</td>\n";
-								print "<td>" . $pay_desc['pay_sum'] . "</td>\n";
-								print "</tr>\n\n";
-							};
+                    if ($sql_result = $db_connect->query($get_history_sql)) {
+                        while ($pay_desc = $sql_result->fetch_assoc()){
+                            print "<tr>\n";
+                            print "<td>" . $pay_desc['pay_type'] . "</td>\n";
+                            print "<td>" . $pay_desc['pay_sum'] . "</td>\n";
+                            print "</tr>\n\n";
                         };
+                    };
 
-						$db_connect->close();
-					?>
-				</table>
-
-			<br><br>
-		</div>
-	</body>
+                    $db_connect->close();
+                };
+            ?>
+            </table>
+            <br><br>
+        </div>
+    </body>
 </html>
