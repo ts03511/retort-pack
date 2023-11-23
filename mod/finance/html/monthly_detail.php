@@ -2,7 +2,7 @@
 <head>
     <title>retort-pack</title>
     <meta charset="UTF-8">
-    <link rel="stylesheet" type="text/css" href="../css/update_1.css">
+    <link rel="stylesheet" type="text/css" href="../css/monthly_detail.css">
 </head>
 
 <!-- List of valiables.
