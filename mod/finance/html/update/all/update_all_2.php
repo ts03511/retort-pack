@@ -2,7 +2,7 @@
 <head>
 	<title>retort-pack</title>
 	<meta charset="UTF-8">
-	<link rel="stylesheet" type="text/css" href="../css/base.css">
+	<link rel="stylesheet" type="text/css" href="./../../../css/base.css">
 	
 </head>
 
@@ -20,7 +20,7 @@
 
 	<body>
 			<?php
-				require './common/connect_to_db.php';
+				require './../common/connect_to_db.php';
 
                 $trancate_sql = 'TRUNCATE TABLE pay_dest_tran';
                 $get_master_sql = 'SELECT * FROM pay_dest_list;';
@@ -59,12 +59,12 @@
 					?>
 				</table>
 
-			<form action="./update_3.php" method="POST">
+			<form action="./update_all_3.php" method="POST">
 				<input type="submit" name="commit" value="この内容で更新する">
 			</form>
 
 			<br><br>
-			<input type="button" value="戻る" onClick="location.href='./update_1.php'">
+			<input type="button" value="戻る" onClick="location.href='./update_all_1.php'">
 		</div>
 	</body>
 </html>
