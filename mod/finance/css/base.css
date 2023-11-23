@@ -58,13 +58,13 @@ table td {
 
 #back_btn_head {
     position: absolute;
-    top: 5%;
+    top: 10%;
     left: 50%;
-    width: 50%;
-    height: 10%;
+    width: 30px;
+    height: 10px;
     aligtn: left;
 }
 
 #back_btn_foot{
-    position: absolute;
+    position: relative;
 }
