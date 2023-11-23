@@ -30,7 +30,7 @@
 		<div id="master">
 			<div id="complete-msg">
 				<h4>更新が完了しました。</h4>
-				<input type="button" value="トップへ戻る" onClick="location.href='/'">
+				<input type="button" value="戻る" onClick="location.href='../index.html'">
 			</div>
 		</div>
 	</body>

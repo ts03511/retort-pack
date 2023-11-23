@@ -2,7 +2,7 @@
 <head>
     <title>retort-pack</title>
     <meta charset="UTF-8">
-    <link rel="stylesheet" type="text/css" href="../css/monthly_detail.css">
+    <link rel="stylesheet" type="text/css" href="../css/base.css">
 </head>
 
 <!-- List of valiables.
@@ -112,7 +112,7 @@
             ?>
 
 			<br><br>
-			<input type="button" value="戻る" onClick="location.href="/index.html">
+			<input type="button" value="戻る" onClick="location.href='../index.html'">
 		</div>
 	</body>
 </html>
