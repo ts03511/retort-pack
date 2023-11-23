@@ -28,9 +28,9 @@ body {
 }
 
 table {
-    position: relative;
-    margin: 5% 5%;
-    padding: 0px;
+    position: absolute;
+    top:15%;
+    left: 5%;
     color: #000000;
     border: #000000;
     background-color: #FFFFFF; 
@@ -53,18 +53,13 @@ table td {
     left: 0%;
     width: 50%;
     height: 10%;
-    align: right;
+    text-align: right;
 }
 
 #back_btn_head {
     position: absolute;
-    top: 10%;
+    top: 5%;
     left: 50%;
-    width: 30px;
-    height: 10px;
-    aligtn: left;
-}
-
-#back_btn_foot{
-    position: relative;
+    width: 50px;
+    height: 30px;
 }

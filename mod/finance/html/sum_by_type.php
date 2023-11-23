@@ -114,7 +114,6 @@
 				</table>
 
 			<br><br>
-			<input type="button" value="戻る" onClick="location.href='../index.html'">
 		</div>
 	</body>
 </html>
