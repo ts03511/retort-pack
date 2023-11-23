@@ -2,7 +2,7 @@
 <head>
     <title>retort-pack</title>
     <meta charset="UTF-8">
-    <link rel="stylesheet" type="text/css" href="../css/base.css">
+    <link rel="stylesheet" type="text/css" href="../css/monthly_detail">
 </head>
 
 <!-- List of valiables.
@@ -25,26 +25,26 @@
         <div id="master">
             <form id="period_select_aria" action="./monthly_detail.php" method="POST">
                 <select name="date">
-                    <option value="2022-07">2022年7月</option>
-                    <option value="2022-08">2022年8月</option>
-                    <option value="2022-09">2022年9月</option>
-                    <option value="2022-10">2022年10月</option>
-                    <option value="2022-11">2022年11月</option>
-                    <option value="2022-12">2022年12月</option>
-                    <option value="2023-01">2023年1月</option>
-                    <option value="2023-02">2023年2月</option>
-                    <option value="2023-03">2023年3月</option>
-                    <option value="2023-04">2023年4月</option>
-                    <option value="2023-05">2023年5月</option>
-                    <option value="2023-06">2023年6月</option>
-                    <option value="2023-07">2023年7月</option>
-                    <option value="2023-08">2023年8月</option>
-                    <option value="2023-09">2023年9月</option>
-                    <option value="2023-10">2023年10月</option>
-                    <option value="2023-11">2023年11月</option>
-                    <option value="2023-12">2023年12月</option>
+                    <?php
+
+                        $get_period_sql =
+                            'SELECT 
+                                DISTINCT(
+                                    SUBSTRING_INDEX(pay_date,"-",2)
+                                ) AS period 
+                            FROM 
+                                payment_history
+                            ORDER BY
+                                period'
+                        ;
+
+                        if ($sql_result = $db_connect->query($get_history_sql)) {
+                            while ($period_list = $sql_result->fetch_assoc()){
+                                print "<option value=\"" . $period_list['period'] . ">" . $period_list['period'] . "</option>";
+                            };
+                        };
+                    ?>
                 </select>
-            
                 <input type="submit" value="表示">
             </form>
             
