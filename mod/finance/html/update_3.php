@@ -2,7 +2,7 @@
 <head>
 	<title>retort-pack</title>
 	<meta charset="UTF-8">
-	<link rel="stylesheet" type="text/css" href="../css/update_3.css">
+	<link rel="stylesheet" type="text/css" href="../css/base.css">
 	
 </head>
 
@@ -30,7 +30,7 @@
 		<div id="master">
 			<div id="complete-msg">
 				<h4>更新が完了しました。</h4>
-				<input type="button" value="トップへ戻る" onClick="location.href='/'">
+				<input type="button" value="戻る" onClick="location.href='../index.html'">
 			</div>
 		</div>
 	</body>

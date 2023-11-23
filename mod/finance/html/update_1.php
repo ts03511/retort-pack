@@ -2,7 +2,7 @@
 <head>
 	<title>retort-pack</title>
 	<meta charset="UTF-8">
-	<link rel="stylesheet" type="text/css" href="../css/update_1.css">
+	<link rel="stylesheet" type="text/css" href="../css/base.css">
 	
 </head>
 
@@ -66,7 +66,7 @@
 			</form>
 
 			<br><br>
-			<input type="button" value="戻る" onClick="location.href='/">
+			<input type="button" value="戻る" onClick="location.href='../index.html'">
 		</div>
 	</body>
 </html>
