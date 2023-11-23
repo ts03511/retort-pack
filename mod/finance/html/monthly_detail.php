@@ -40,7 +40,7 @@
 
                         if ($sql_result = $db_connect->query($get_period_sql)) {
                             while ($period_list = $sql_result->fetch_assoc()){
-                                print "<option value=\"" . $period_list['period'] . ">" . $period_list['period'] . "</option>";
+                                print "<option value=\"" . $period_list['period'] . "\">" . $period_list['period'] . "</option>";
                             };
                         };
                     ?>
