@@ -30,13 +30,13 @@
 
 					<?php
 				        require './../common/connect_to_db.php';
-                        for ($record_id=1; $record_id<=3; $record_id++) {
+                        $loop_num = count($_POST);
+                        for ($record_id=1; $record_id<=$loop_num; $record_id++) {
                             print "<tr>\n";
                             print "<td>" . $_POST["pay_dest_$record_id"] . "</td>\n";
                             print "<td>" . $_POST["pay_type_$record_id"] . "</td>\n";
                             print "</tr>\n\n";
 						};
-                        print var_dump($_POST);
 						$db_connect->close();
 					?>
 				</table>

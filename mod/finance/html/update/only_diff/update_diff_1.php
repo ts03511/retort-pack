@@ -51,7 +51,7 @@
 						if ($sql_result = $db_connect->query($get_master_sql)) {
 							while ($pay_desc = $sql_result->fetch_assoc()){
 								print "<tr>\n";
-								print "<td>{$pay_desc['pay_dest']}</td>\n";
+								print "<td><input type=\"text\" name=\"pay_dest_{$record_id}\" value=\"{$pay_desc['pay_dest']}\" readonly></td>\n";
 								print "<td><input type=\"text\" name=\"pay_type_{$record_id}\" value=\"{$pay_desc['pay_type']}\"></td>\n";
 								print "</tr>\n\n";
                                 $record_id = $record_id + 1;

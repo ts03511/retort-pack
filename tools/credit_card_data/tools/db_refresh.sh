@@ -70,4 +70,4 @@ done
 
 
 ## load sql
-mysql -u retort -p --password=retort < db_refresh.sql
+mysql -u retort -p < db_refresh.sql
