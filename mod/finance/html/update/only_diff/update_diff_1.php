@@ -24,7 +24,7 @@
 			?>
 
 		<div id="master">
-			<form action="./update_all_2.php" method="POST">
+			<form action="./update_diff_2.php" method="POST">
 				<table>
 					<tr>
 						<th>支払先</th>
@@ -32,12 +32,26 @@
 					</tr>
 
 					<?php
-						$get_master_sql = 'SELECT * FROM pay_dest_list';
+						$get_master_sql = 
+                            'SELECT 
+                                pay_dest_list.pay_dest,
+                                pay_dest_tran.pay_type
+                             FROM 
+                                pay_dest_list
+                             LEFT OUTER JOIN 
+                                pay_dest_tran
+                             ON
+	                            pay_dest_list.pay_dest = pay_dest_tran.pay_dest
+                             WHERE
+                                pay_dest_tran.pay_type is null
+                            '
+                        ;
+
                         $record_id = 1;
 						if ($sql_result = $db_connect->query($get_master_sql)) {
 							while ($pay_desc = $sql_result->fetch_assoc()){
 								print "<tr>\n";
-								print "<td>{$pay_desc['pay_dest']}</td>\n";
+								print "<td><input type=\"text\" name=\"pay_dest_{$record_id}\" value=\"{$pay_desc['pay_dest']}\" readonly></td>\n";
 								print "<td><input type=\"text\" name=\"pay_type_{$record_id}\" value=\"{$pay_desc['pay_type']}\"></td>\n";
 								print "</tr>\n\n";
                                 $record_id = $record_id + 1;

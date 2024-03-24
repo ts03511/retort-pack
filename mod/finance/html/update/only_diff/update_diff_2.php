@@ -19,12 +19,9 @@
 -->
 
 	<body>
-			<?php
-				require './../common/connect_to_db.php';
-			?>
+
 
 		<div id="master">
-			<form action="./update_all_2.php" method="POST">
 				<table>
 					<tr>
 						<th>支払先</th>
@@ -32,25 +29,24 @@
 					</tr>
 
 					<?php
-						$get_master_sql = 'SELECT * FROM pay_dest_list';
-                        $record_id = 1;
-						if ($sql_result = $db_connect->query($get_master_sql)) {
-							while ($pay_desc = $sql_result->fetch_assoc()){
-								print "<tr>\n";
-								print "<td>{$pay_desc['pay_dest']}</td>\n";
-								print "<td><input type=\"text\" name=\"pay_type_{$record_id}\" value=\"{$pay_desc['pay_type']}\"></td>\n";
-								print "</tr>\n\n";
-                                $record_id = $record_id + 1;
-							};
+				        require './../common/connect_to_db.php';
+                        $loop_num = count($_POST);
+                        for ($record_id=1; $record_id<=$loop_num; $record_id++) {
+                            print "<tr>\n";
+                            print "<td>" . $_POST["pay_dest_$record_id"] . "</td>\n";
+                            print "<td>" . $_POST["pay_type_$record_id"] . "</td>\n";
+                            print "</tr>\n\n";
 						};
 						$db_connect->close();
 					?>
 				</table>
-				<input type="submit" value="プレビュー">
+
+			<form action="./update_diff_3.php" method="POST">
+				<input type="submit" name="commit" value="この内容で更新する">
 			</form>
 
 			<br><br>
-			<input type="button" value="戻る" onClick="location.href='./../../../index.html'">
+			<input type="button" value="戻る" onClick="location.href='./update_diff_1.php'">
 		</div>
 	</body>
 </html>
